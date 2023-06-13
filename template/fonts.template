@@ -1,0 +1,97 @@
+[fonts]
+;      
+linux = "  "
+apple = ""
+system = ${self.linux}
+cpu = " "
+memory = ""
+disk = "  "
+unmounted = "  "
+network = "  "
+disconnected = "  "
+time = "  "
+bluetooth = "  "
+usb = "  "
+usb-1 = ""
+battery = ""
+charging_full = ""
+
+;🎵 ⏪⏩🔀🔁🔂⏩⏯⏸⏹️⏺️🔽🔼🎦🎥⏫⏬🔃🔄🔙🔝🚫🚰
+music = " 🎵 "
+play = 
+pause = 
+stop = 
+prev = 
+next = 
+random = 
+repeat = 
+single = 
+consume = 
+record = 
+screenshot = 🎥
+
+muted = 
+volume-0 = 
+volume-1 = 
+volume-2 = 
+volume-3 = 
+
+temp-0 = 
+temp-1 = 
+temp-2 = 
+temp-3 = 
+temp-4 = 
+
+signal-0 = 
+signal-1 = 
+signal-2 = 
+signal-3 = 
+signal-4 = 
+signal-5 = 
+
+# cpu load
+coreload-0 = ▁
+coreload-1 = ▂
+coreload-2 = ▃
+coreload-3 = ▄
+coreload-4 = ▅
+coreload-5 = ▆
+coreload-6 = ▇
+coreload-7 = █
+
+
+battery_cap_0 = 
+battery_cap_1 = 
+battery_cap_2 = 
+battery_cap_3 = 
+battery_cap_4 = 
+charging-0 = 
+charging-1 = 
+charging-2 = 
+
+#分隔符 separator
+
+# 默认分隔符
+sep_default = " "
+sep_default_left = " "
+sep_default_right = " "
+
+# 半圆形
+;sep_halfcircle_left = ""
+;sep_halfcircle_right = ""
+;sep_halfcircle_left = ""
+;sep_halfcircle_right = ""
+sep_halfcircle_left = 
+sep_halfcircle_right = 
+
+# 三角形
+sep_triangle_left = ""
+sep_triangle_right = ""
+
+; 三角边线
+;sep_triangle_left = ""
+;sep_triangle_right = ""
+
+
+sep_left = ${self.sep_triangle_left}
+sep_right = ${self.sep_triangle_right}
