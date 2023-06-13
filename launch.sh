@@ -143,8 +143,10 @@ function launch_bar() {
     logit "开始启动polybar, 当前主题: $THEME_NAME"
 
     # 自动设置 module 色彩
-    $workdir/scripts/00-autocolor.sh $workdir/themes/$THEME_NAME/config.ini
+    $workdir/scripts/00-autocolor.sh
 
+    # 自动设置 var.ini 变量信息
+    $workdir/scripts/00-autosetvar.sh
     $workdir/themes/$THEME_NAME/start_bar.sh
     echo
 }

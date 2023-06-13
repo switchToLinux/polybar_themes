@@ -4,12 +4,11 @@
 ################################
 
 # 读取 config.ini 文件
-config_file="$1"
-workdir="`dirname $0`"
+config_file="$POLYBAR_HOME/themes/$THEME_NAME/config.ini"
+module_path="$POLYBAR_HOME/modules"
 
 [[ ! -f "$config_file" ]] && echo "config.ini 配置文件不存在: path=${config_file}" && return 1
 
-module_path="$workdir/../modules"
 
 # 读取配置文件中的 modules-left/modules-center/modules-right 设置
 modules_left=$(grep -oP "(?<=modules-left = ).*" $config_file)
