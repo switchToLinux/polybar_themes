@@ -11,11 +11,11 @@ font_file=$workdir/.fonts.ini
 
 # 主题列表
 themes="`ls $workdir/themes`"
-
+colors="`ls --ignore="base*" colors|sed 's/.ini//g'`"
 function usage() {
     echo "Usage:"
     echo
-    echo "    `basename $0` <theme>"
+    echo "    `basename $0` <theme> [style] [color] [lang]"
     echo "    polybar 启动器, 可选择不同主题"
     echo
     echo "可选主题列表-theme:"
@@ -84,6 +84,7 @@ function check_monitors() {
 }
 
 function install_fontconfig() {
+    which fc-match >/dev/null && return 0
     which apt >/dev/null && pac_cmd="apt install -y"
     which dnf >/dev/null && pac_cmd="dnf install -y"
     which zypper >/dev/null && pac_cmd="zypper install -y"
@@ -121,14 +122,6 @@ function generate_font() {
     done
 }
 
-check_resolution
-check_monitors
-generate_font
-
-# 加载自动生成的 env 信息
-source $export_env_file
-
-
 function launch_bar() {
 
     [[ "$THEME_NAME" == "" ]] && echo "请先设置主题!" && exit 1
@@ -142,12 +135,20 @@ function launch_bar() {
 
     logit "开始启动polybar, 当前主题: $THEME_NAME"
 
+    check_resolution
+    check_monitors
+    generate_font
+
+    # 加载自动生成的 env 信息
+    source $export_env_file
+
     # 自动设置 module 色彩
     $workdir/scripts/00-autocolor.sh
 
     # 自动设置 var.ini 变量信息
     $workdir/scripts/00-autosetvar.sh
-    $workdir/themes/$THEME_NAME/start_bar.sh
+
+    $workdir/themes/$THEME_NAME/start_bar.sh $1 $2 $3
     echo
 }
 
@@ -180,6 +181,8 @@ function select_theme() {
 # 主题名称: 对应 themes 目录下的目录名
 select_theme "$1"
 
-launch_bar
+shift
+
+launch_bar $@
 
 # END

@@ -16,8 +16,22 @@ usb-1 = ""
 battery = ""
 charging_full = ""
 
-;🎵 ⏪⏩🔀🔁🔂⏩⏯⏸⏹️⏺️🔽🔼🎦🎥⏫⏬🔃🔄🔙🔝🚫🚰
-music = " 🎵 "
+; 电源/重启/关机/锁屏
+user = "  "
+exit = "  "
+power_off = "  "
+restart = "  "
+lock_screen = "  "
+settings = "  "
+tray = "  "
+
+toggle_on = ""
+toggle_off = ""
+cancel = "  "
+select = "  "
+
+;♬🎵 ⏪⏩🔀🔁🔂⏩⏯⏸⏹️⏺️🔽🔼🎦🎥⏫⏬🔃🔄🔙🔝🚫🚰
+music = " ♬ "
 play = 
 pause = 
 stop = 
@@ -28,8 +42,9 @@ repeat = 
 single = 
 consume = 
 record = 
-screenshot = 🎥
+screenshot = 
 
+audio = 
 muted = 
 volume-0 = 
 volume-1 = 
@@ -76,21 +91,50 @@ sep_default = " "
 sep_default_left = " "
 sep_default_right = " "
 
-# 半圆形
-;sep_halfcircle_left = ""
-;sep_halfcircle_right = ""
-;sep_halfcircle_left = ""
-;sep_halfcircle_right = ""
-sep_halfcircle_left = 
-sep_halfcircle_right = 
 
-# 三角形
-sep_triangle_left = ""
-sep_triangle_right = ""
+# 直角 right triangle
+sep_rtriangle_left = ""
+sep_rtriangle_right = ""
 
-; 三角边线
-;sep_triangle_left = ""
-;sep_triangle_right = ""
+# 半圆形-semi-circle
+sep_circle_left = 
+sep_circle_right = 
+
+# 三角形-triangle
+sep_triangle_left = 
+sep_triangle_right = 
+
+# 三角边线
+sep_triangleline_left = 
+sep_triangleline_right = 
+
+# 平行四边形
+sep_paral1_left = ""
+sep_paral1_right = ""
+
+sep_paral2_left = ""
+sep_paral2_right = ""
+
+# 火焰
+sep_fire_left = 
+sep_fire_right = 
+
+# 波纹
+sep_wave_left = 
+sep_wave_right = 
+
+# 粒子化
+sep_particle_left = 
+sep_particle_right = 
+
+
+shape1 = ""
+sep_shape1_left = ${self.shape1}
+sep_shape1_right = ${self.shape1}
+
+shape2 = ""
+sep_shape2_left = ${self.shape2}
+sep_shape2_right = ${self.shape2}
 
 
 sep_left = ${self.sep_triangle_left}

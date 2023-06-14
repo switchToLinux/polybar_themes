@@ -12,15 +12,10 @@
 - [x] 有趣的随机主题 random ，用过 ohmyzsh 的用户一定用过`random`每次都随机一个主题，换个样式，给单调乏味的生活添加一点惊喜。
 - [x] dpi/font_size/height 三个参数设置不合理时可能显示内容上下间距不同，解决方法：通过 `vertical_offset`参数调整垂直对齐。
 
-## 如何使用
-
-- 00.polybar主题目录结构说明
-- 01.如何编写自己的主题
-- 02.关于字体安装说明
-- 10.开发项目过程中遇到的问题总结
-
 
 ## 如何应用 polybar
+
+快速安装主题:
 
 ```sh
 git clone https://github.com/switchToLinux/polybar-themes.git ~/.config/polybar_themes
@@ -29,6 +24,22 @@ git clone https://github.com/switchToLinux/polybar-themes.git ~/.config/polybar_
 ~/.config/polybar_themes/launch.sh random
 
 ```
+
+为了快捷切换polybar 开关可以在自己的 i3wm 配置文件添加快捷键绑定:
+```ini
+bindsym $mod+n   exec --no-startup-id "pgrep --oldest -f 'polybar.*main_top'    > /tmp/tmp.polybar.pid && polybar-msg -p $(cat /tmp/tmp.polybar.pid) cmd toggle"
+bindsym $mod+m   exec --no-startup-id "pgrep --oldest -f 'polybar.*main_bottom' > /tmp/tmp.polybar.pid && polybar-msg -p $(cat /tmp/tmp.polybar.pid) cmd toggle"
+```
+
+
+## 字体选择
+
+- icon font :  Font Awesome 6 Free , Material Icons
+- emoji font : Noto Color Emoji
+- text font : Noto Sans Mono CJK SC
+
+> 关于字体更加丰富信息可以参考阅读 [archlinux Fonts](https://wiki.archlinux.org/title/Fonts)。
+
 
 ## 最后
 

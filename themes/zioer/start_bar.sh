@@ -7,12 +7,16 @@ themedir=`dirname $0`
 # 配置文件路径
 CONFIG_FILE="$themedir/config.ini"
 
-# 主题样式设置 circle/default(rectangle)/triangle
-export THEME_STYLE="triangle"
+# 主题样式设置 circle/default(rectangle)/triangle/wave/fire/random
+export THEME_STYLE="${1:-triangle}"
 
 # 主题颜色方案: 对应 colors 目录下的 ${THEME_COLOR}.ini 文件
-export THEME_COLOR="zioer"
+export THEME_COLOR="${2:-zioer}"
 
+# 主题显示中文
+export THEME_LANG="${3:-zh_CN}"
+
+change_lang  $THEME_LANG
 change_style $THEME_STYLE
 change_color $THEME_COLOR
 
