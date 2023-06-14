@@ -50,10 +50,11 @@ vertical_offset=0
 # 分辨率检测并设置polybar高度
 function check_resolution() {
     if [[ $resolution -le 1080 ]] ; then # 老旧非高分屏幕 11英寸-13英寸
-        height=22
+        height=24
         dpi=96
-        font_size=13
-        scale_size=13
+        font_size=14
+        scale_size=14
+        vertical_offset=4
     elif [[ $resolution -le 1440 ]]; then
         height=36
         dpi=140
