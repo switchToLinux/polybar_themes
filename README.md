@@ -40,6 +40,44 @@ bindsym $mod+m   exec --no-startup-id "pgrep --oldest -f 'polybar.*main_bottom' 
 
 > 关于字体更加丰富信息可以参考阅读 [archlinux Fonts](https://wiki.archlinux.org/title/Fonts)。
 
+## 常见的样式示例
+
+以 `zioer`主题布局为例，展示常见的分隔符样式效果
+
+### default默认长方块
+
+![default](https://raw.githubusercontent.com/switchToLinux/polybar_themes/main/images/default.jpg)
+
+### triangle三角形
+
+![triangle](https://raw.githubusercontent.com/switchToLinux/polybar_themes/main/images/triangle.jpg)
+
+
+### circle圆角
+
+![circle](https://raw.githubusercontent.com/switchToLinux/polybar_themes/main/images/circle.jpg)
+
+
+### fire
+
+![fire](https://raw.githubusercontent.com/switchToLinux/polybar_themes/main/images/fire.jpg)
+
+
+### 四边形1
+
+![paral1](https://raw.githubusercontent.com/switchToLinux/polybar_themes/main/images/paral1.jpg)
+
+
+### 四边形2
+
+![paral2](https://raw.githubusercontent.com/switchToLinux/polybar_themes/main/images/paral2.jpg)
+
+
+### wave波纹
+
+![wave](https://raw.githubusercontent.com/switchToLinux/polybar_themes/main/images/wave.jpg)
+
+
 
 ## 最后
 
