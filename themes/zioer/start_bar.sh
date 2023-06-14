@@ -14,7 +14,7 @@ export THEME_STYLE="${1:-triangle}"
 export THEME_COLOR="${2:-zioer}"
 
 # 主题显示中文
-export THEME_LANG="${3:-zh_CN}"
+export THEME_LANG="${3}"
 
 change_lang  $THEME_LANG
 change_style $THEME_STYLE

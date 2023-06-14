@@ -23,7 +23,7 @@ function change_color() {
 function change_style() {
     choice="${1:-default}"
     font_file="$POLYBAR_HOME/.fonts.ini"
-    all_style="`grep '^sep_.*_left = ' $font_file | awk -F_ '{ a[$2]++}END{x=0;for(i in a){if(x)printf(" "); printf("%s",i);x=1; }}'`"
+    all_style="`grep '^sep_.*_left = ' $font_file | awk -F_ '{ a[$2]++}END{for(i in a){ printf("%s ",i) }}'`"
     if [ "${choice}" == "" ]; then
         echo "Please enter a valid choice for the new style"
         echo "choice:"
@@ -58,14 +58,15 @@ function change_style() {
     if [[ "$value" == "" ]] ; then
         value="default"
     fi
-    logit "当前 THEME_STYLE $value"
-    sed -i "s/^sep_left =.*/sep_left = \${self.sep_${value}_left}/g"  $font_file
-    sed -i "s/^sep_right =.*/sep_right = \${self.sep_${value}_right}/g"  $font_file
+    logit "当前 THEME_STYLE [$value]"
+    sed -i "s#^sep_left =.*#sep_left = \${self.sep_${value}_left}#g"  $font_file
+    sed -i "s#^sep_right =.*#sep_right = \${self.sep_${value}_right}#g"  $font_file
 }
 
 # 更改语言
 function change_lang() {
     choice="${1:-zh_CN}"
     lang_dir="$POLYBAR_HOME/i18n"
+    [[ -f $lang_dir/i18n_${choice}.ini ]] || choice="zh_CN"
     create_symlink "$lang_dir/i18n_${choice}.ini" "$lang_dir/.i18n.ini"
 }

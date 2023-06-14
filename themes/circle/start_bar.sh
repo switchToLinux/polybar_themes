@@ -14,10 +14,10 @@ export THEME_STYLE="${1:-circle}"
 export THEME_COLOR="${2:-circle}"
 
 # 主题显示中文
-export THEME_LANG="${3:-zh_CN}"
+export THEME_LANG="${3}"
 
+change_lang  $THEME_LANG
 change_style $THEME_STYLE
-change_color $THEME_COLOR
 change_color $THEME_COLOR
 
 # 启动 Polybar

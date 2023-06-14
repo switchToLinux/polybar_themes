@@ -148,7 +148,7 @@ function launch_bar() {
     # 自动设置 var.ini 变量信息
     $workdir/scripts/00-autosetvar.sh
 
-    $workdir/themes/$THEME_NAME/start_bar.sh $1 $2 $3
+    $workdir/themes/$THEME_NAME/start_bar.sh $@
     echo
 }
 
