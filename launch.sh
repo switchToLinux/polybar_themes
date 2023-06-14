@@ -11,7 +11,9 @@ font_file=$workdir/.fonts.ini
 
 # 主题列表
 themes="`ls $workdir/themes`"
-colors="`ls --ignore="base*" colors|sed 's/.ini//g'`"
+style_list="`grep '^sep_.*_left = ' $workdir/template/icons.ini | awk -F_ '{ a[$2]++}END{for(i in a){ printf("%s ",i) }}'`"
+colors="`ls --ignore="base*" $workdir/colors|sed 's/.ini//g'`"
+lang_list="`ls --ignore=".i18n.ini" $workdir/i18n|sed 's/.ini//g;s/i18n_//g'`"
 function usage() {
     echo "Usage:"
     echo
@@ -22,6 +24,16 @@ function usage() {
     for t in $themes; do
         echo "  $t"
     done
+    echo
+    echo "可选提示符样式-style:"
+    echo "    $style_list"
+    echo
+    echo "可选颜色搭配方案-color:"
+    echo "    $colors"
+    echo
+    echo "可选语言支持-lang:"
+    echo "    $lang_list"
+    echo
 }
 
 if [ "$1" = "" ] ; then
@@ -102,7 +114,7 @@ function generate_font() {
 
     cnt=1
     echo "# 自动生成 font 环境变量" >> $export_env_file
-    cat $workdir/template/fonts.template > $font_file
+    cat $workdir/template/icons.ini > $font_file
     cat $workdir/template/fonts.list | while read font
     do
         font_prefix=`echo $font|awk -F"[: ]" '{print $1 }'`
