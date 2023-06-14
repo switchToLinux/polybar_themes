@@ -34,9 +34,13 @@ bindsym $mod+m   exec --no-startup-id "pgrep --oldest -f 'polybar.*main_bottom' 
 
 ## 字体选择
 
-- icon font :  Font Awesome 6 Free , Material Icons
+- icon font :  Font Awesome 6 Free , Material Icons ， JetBrainsMono Nerd Font Mono
 - emoji font : Noto Color Emoji
 - text font : Noto Sans Mono CJK SC
+
+使用`JetBrainsMono Nerd Font`字体时会出现图标过大显示不全情况，换成`JetBrainsMono Nerd Font Mono`就不存在这个问题，因此尽量选择等宽字体。
+
+
 
 > 关于字体更加丰富信息可以参考阅读 [archlinux Fonts](https://wiki.archlinux.org/title/Fonts)。
 
