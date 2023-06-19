@@ -16,6 +16,7 @@ function create_symlink() {
 function change_color() {
     color_name="$1"
     color_dir="$POLYBAR_HOME/colors"
+    [[ -f $color_dir/${color_name}.ini ]] || color_name="zioer"  # default color
     create_symlink "$color_dir/${color_name}.ini" "$color_dir/.current.ini"
 }
 
