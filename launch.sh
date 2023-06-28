@@ -51,6 +51,8 @@ echo > $export_env_file
 height=
 #高分辨率调整此参数
 dpi=
+#圆角半径参数
+radius=
 #字体大小
 font_size=
 # 缩放icon大小(当发生图标过大时修改此参数),用于Font Awesome 等可缩放字体
@@ -64,17 +66,20 @@ function check_resolution() {
     if [[ $resolution -le 1080 ]] ; then # 老旧非高分屏幕 11英寸-13英寸
         height=24
         dpi=96
+        radius=12
         font_size=14
         scale_size=14
         vertical_offset=4
     elif [[ $resolution -le 1440 ]]; then
         height=36
         dpi=140
+        radius=18
         font_size=14
         scale_size=14
     else # elif [[ $resolution -gt 1440 ]]; then
         height=50
         dpi=196
+        radius=24
         font_size=14
         scale_size=13
         vertical_offset=7
@@ -82,6 +87,7 @@ function check_resolution() {
     echo export POLYBAR_HEIGHT=$height      >> ${export_env_file}
     echo export POLYBAR_DPI=$dpi            >> ${export_env_file}
     echo export POLYBAR_HOME=$workdir       >> ${export_env_file}
+    echo export RADIUS=$radius              >> ${export_env_file}
     logit "resolution: $resolution , dpi: $dpi , font_size: $font_size , scale_size: $scale_size , vertical_offset: $vertical_offset"
 }
 # 检测屏幕数量(1-2)
