@@ -21,7 +21,7 @@ change_style $THEME_STYLE
 change_color $THEME_COLOR
 
 # 为了视觉窗口悬浮效果 ， 修改 i3wm 配置上下边距
-sed -i "s/^gaps vertical .*/gaps vertical 42/g" ~/.config/i3/config
+sed -i "s/^gaps vertical .*/gaps vertical ${POLYBAR_HEIGHT}/g" ~/.config/i3/config
 sed -i "s/^gaps horizontal .*/gaps horizontal 4/g" ~/.config/i3/config
 
 # 启动 Polybar
