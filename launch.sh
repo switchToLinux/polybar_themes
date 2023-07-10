@@ -103,12 +103,12 @@ function check_monitors() {
 }
 
 function install_fontconfig() {
-    which fc-match >/dev/null && return 0
-    which apt >/dev/null && pac_cmd="apt install -y"
-    which dnf >/dev/null && pac_cmd="dnf install -y"
-    which zypper >/dev/null && pac_cmd="zypper install -y"
-    which fc-match >/dev/null || $pac_cmd fontconfig
-    ! which fc-match >/dev/null  && echo "Failed to install fontconfig" && exit 1
+    command -v fc-match >/dev/null && return 0
+    command -v apt >/dev/null && pac_cmd="apt install -y"
+    command -v dnf >/dev/null && pac_cmd="dnf install -y"
+    command -v zypper >/dev/null && pac_cmd="zypper install -y"
+    command -v fc-match >/dev/null || $pac_cmd fontconfig
+    ! command -v fc-match >/dev/null  && echo "Failed to install fontconfig" && exit 1
 }
 
 # 根据分辨率设置字体大小,同时增加字体缺失校验和补充安装
