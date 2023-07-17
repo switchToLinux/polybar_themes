@@ -2,7 +2,8 @@
 ################################
 workdir=`dirname $0`   # 不是每个人都会安装到 ~/.config/polybar 目录的，因此需要动态设置这个目录
 # 获取屏幕分辨率
-resolution=$(xrandr | grep ' connected primary' | awk '{print $4}' | awk -F'[x+]' '{ print $2 }')
+screen_height=$(xrandr | grep ' connected primary' | awk '{print $4}' | awk -F'[x+]' '{ print $2 }')
+screen_width=$(xrandr | grep ' connected primary' | awk '{print $4}' | awk -F'[x+]' '{ print $1 }')
 monitor_list=$(xrandr --listmonitors | awk 'NR>2{printf(" ")}NR>1{printf("%s", $NF) }')
 
 # 需要导出的环境变量信息
@@ -63,20 +64,20 @@ vertical_offset=0
 
 # 分辨率检测并设置polybar高度
 function check_resolution() {
-    if [[ $resolution -le 1080 ]] ; then # 老旧非高分屏幕 11英寸-13英寸
+    if [[ $screen_height -le 1080 ]] ; then # 老旧非高分屏幕 11英寸-13英寸
         height=24
         dpi=96
         radius=12
         font_size=14
         scale_size=14
         vertical_offset=4
-    elif [[ $resolution -le 1440 ]]; then
+    elif [[ $screen_height -le 1440 ]]; then
         height=36
         dpi=140
         radius=18
         font_size=14
         scale_size=14
-    else # elif [[ $resolution -gt 1440 ]]; then
+    else # elif [[ $screen_height -gt 1440 ]]; then
         height=50
         dpi=196
         radius=24
@@ -88,7 +89,9 @@ function check_resolution() {
     echo export POLYBAR_DPI=$dpi            >> ${export_env_file}
     echo export POLYBAR_HOME=$workdir       >> ${export_env_file}
     echo export RADIUS=$radius              >> ${export_env_file}
-    logit "resolution: $resolution , dpi: $dpi , font_size: $font_size , scale_size: $scale_size , vertical_offset: $vertical_offset"
+    echo export SCREEN_HEIGHT=$screen_height >> ${export_env_file}
+    echo export SCREEN_WIDTH=$screen_width  >> ${export_env_file}
+    logit "resolution: $screen_height , dpi: $dpi , font_size: $font_size , scale_size: $scale_size , vertical_offset: $vertical_offset"
 }
 # 检测屏幕数量(1-2)
 function check_monitors() {
@@ -166,6 +169,11 @@ function launch_bar() {
 
     # 自动设置 var.ini 变量信息
     $workdir/scripts/00-autosetvar.sh
+
+    # 无法预测 polybar主题是否使用了hideIt.sh ，因此在启动/重启等操作前统一的kill hideIt.sh 进程
+    if ps -ef |grep $POLYBAR_HOME/scripts/hideIt.sh | grep -v grep >/dev/null 2>&1 ; then
+        ps -ef |grep $POLYBAR_HOME/scripts/hideIt.sh | grep -v grep | awk '{ print $2 }' | xargs kill
+    fi
 
     $workdir/themes/$THEME_NAME/start_bar.sh $@
     echo

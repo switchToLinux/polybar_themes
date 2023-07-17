@@ -26,13 +26,13 @@ export THEME_COLOR="${2:-circle}"
 # 主题显示中文
 export THEME_LANG="${3}"
 
+# 启动自动隐藏，默认true开启,false关闭
+export ENABLE_AUTOHIDE="${4:-true}"
+
 change_lang  $THEME_LANG
 change_style $THEME_STYLE
 change_color $THEME_COLOR
 
-# 为了视觉窗口悬浮效果 ， 修改 i3wm 配置上下边距
-sed -i "s/^gaps vertical .*/gaps vertical ${POLYBAR_HEIGHT}/g" ~/.config/i3/config
-sed -i "s/^gaps horizontal .*/gaps horizontal 4/g" ~/.config/i3/config
 
 # 启动 Polybar
 # --reload 参数支持 配置修改后自动加载
@@ -41,10 +41,29 @@ sed -i "s/^gaps horizontal .*/gaps horizontal 4/g" ~/.config/i3/config
 
 options=" -q "
 
-polybar ${options} --config="$CONFIG_FILE" main_top &
-polybar ${options} --config="$CONFIG_FILE" main_bottom &
+nohup polybar ${options} --config="$CONFIG_FILE" main_top >/dev/null 2>&1 &
+nohup polybar ${options} --config="$CONFIG_FILE" main_bottom >/dev/null 2>&1 &
 if [ "$MONITOR2" != "" ] ; then
     polybar ${options} --config="$CONFIG_FILE" monitor2 &
 fi
+
+if [[ "$ENABLE_AUTOHIDE" == "true" ]] ; then
+    # 为了视觉窗口悬浮效果 ， 修改 i3wm 配置上下边距
+    sed -i "s/^gaps vertical .*/gaps vertical 4/g" ~/.config/i3/config
+    sed -i "s/^gaps horizontal .*/gaps horizontal 4/g" ~/.config/i3/config
+
+    # 等待 polybar 启动成功
+    sleep 1
+
+    nohup $POLYBAR_HOME/scripts/hideIt.sh --name '^polybar-main_top.*' --region 0x0+${SCREEN_WIDTH}+0 -i 1 -s 30 >/dev/null 2>&1 &
+    nohup $POLYBAR_HOME/scripts/hideIt.sh --name '^polybar-main_bottom.*' --region 0x${SCREEN_HEIGHT}+${SCREEN_WIDTH}+-${POLYBAR_HEIGHT} -i 1 -s 30 >/dev/null 2>&1 &
+else
+    # 为了视觉窗口悬浮效果 ， 修改 i3wm 配置上下边距
+    sed -i "s/^gaps vertical .*/gaps vertical ${POLYBAR_HEIGHT}/g" ~/.config/i3/config
+    sed -i "s/^gaps horizontal .*/gaps horizontal 4/g" ~/.config/i3/config
+fi
+
+# 重新加载一下i3wm配置
+i3-msg reload
 
 #END
