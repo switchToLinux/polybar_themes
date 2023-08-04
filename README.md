@@ -82,6 +82,26 @@ bindsym $mod+m   exec --no-startup-id "pgrep --oldest -f 'polybar.*main_bottom' 
 ![wave](https://raw.githubusercontent.com/switchToLinux/polybar_themes/main/images/wave.jpg)
 
 
+### 自动隐藏polybar功能
+> 自动隐藏polybar使用了 hideIt.sh 脚本， `circle`主题默认配置了自动隐藏功能。
+
+![circle_autohide](https://raw.githubusercontent.com/switchToLinux/polybar_themes/main/images/circle_autohide.gif)
+
+配置自动隐藏的方法：
+
+1. 设置bar的参数`override-redirect`为`true`
+2. 使用`xprop`获取窗口名称: `xprop | grep WM_NAME`
+3. 设置`hideIt.sh`参数和触发的区域信息（底部polybar的左下角触发）: `./hideIt.sh --name '^Polybar tray window$' --region 0x1080+10+-40`
+
+如下具体操作:
+```sh
+# Find the windows name
+$ xprop | grep WM_NAME
+WM_NAME(STRING) = "Polybar tray window"
+
+# Hide it
+$ ./hideIt.sh --name '^Polybar tray window$' --region 0x1080+10+-40
+```
 
 ## 最后
 
