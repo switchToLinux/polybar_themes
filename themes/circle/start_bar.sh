@@ -49,8 +49,8 @@ fi
 
 if [[ "$ENABLE_AUTOHIDE" == "true" ]] ; then
     # 为了视觉窗口悬浮效果 ， 修改 i3wm 配置上下边距
-    sed -i "s/^gaps vertical .*/gaps vertical 4/g" ~/.config/i3/config
-    sed -i "s/^gaps horizontal .*/gaps horizontal 4/g" ~/.config/i3/config
+    # sed -i "s/^gaps vertical .*/gaps vertical 4/g" ~/.config/i3/config
+    # sed -i "s/^gaps horizontal .*/gaps horizontal 4/g" ~/.config/i3/config
 
     # 等待 polybar 启动成功
     sleep 1
